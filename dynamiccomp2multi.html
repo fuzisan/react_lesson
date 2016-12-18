@@ -26,7 +26,15 @@
     {id:3, name:'ccc', area:'Saitama', number:'345'}
   ];
 
-  var TableHeader = React.createClass({
+  var ContactTable = React.createClass({
+    render: function(){
+      return(
+        <table>{this.props.children}</table>
+      );
+    }
+  });
+
+  ContactTable.Header = React.createClass({
     render: function() {
       var tableTitles = this.props.title.map(function(cName, i) {
         return (<th key={i}>
@@ -41,7 +49,7 @@
     }
   });
 
-  var TableBody = React.createClass({
+  ContactTable.Body = React.createClass({
     render: function() {
       var tableRows = this.props.data.map(function(person) {
         return (<tr key={person.id}>
@@ -58,10 +66,10 @@
 
   var DispTable = React.createClass({
     render: function() {
-      return (<table className="regularTable">
-        <TableHeader title={this.props.title}/>
-        <TableBody data={this.props.data}/>
-      </table>);
+      return (<ContactTable className="regularTable">
+        <ContactTable.Header title={this.props.title}/>
+        <ContactTable.Body data={this.props.data}/>
+      </ContactTable>);
     }
   });
 
