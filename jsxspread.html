@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <script src="https://fb.me/react-15.3.0.js"></script>
+  <script src="https://fb.me/react-dom-15.3.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+  <div id="content"></div>
+
+  <script type="text/babel">
+  var myAttributes = {
+    type: 'checkbox',
+    checked: true,
+    readOnly: true,
+    disabled: true,
+    size: 8
+  }
+  var myStyle = {
+    fontStyle: 'normal',
+    fontFamily: 'Courier',
+    color: 'brown'
+  }
+  ReactDOM.render(
+    <div>
+      <h2 style = {{...myStyle}}>
+        Spread
+      </h2>
+      <p><input
+      type = {myAttributes.type}
+      checked = {myAttributes.checked}
+      readOnly = {myAttributes.readOnly}
+      disabled = {myAttributes.disabled}
+      size = {myAttributes.size}
+      />Checke Me</p>
+      <p><input {...myAttributes}/>Checke Me</p>
+    </div>,
+    document.getElementById('content')
+  );
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <script src="https://fb.me/react-15.3.0.js"></script>
+    <script src="https://fb.me/react-dom-15.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <div id="content"></div>
+
+    <p><input type="checkbox" checked>HTML Check1</p>
+    <p><input type="checkbox" checked="false">HTML Check2</p>
+    <p><input type="checkbox">HTML Check3</p>
+
+    <script type="text/babel">
+    ReactDOM.render(
+      <div>
+        <p><input type="checkbox" checked/>JSX Check1</p>
+        <p><input type="checkbox" checked={true}/>JSX Check2</p>
+        <p><input type="checkbox" checked={false}/>JSX Check3</p>
+      </div>,
+      document.getElementById('content')
+    );
+    </script>
+  </body>
+</html>

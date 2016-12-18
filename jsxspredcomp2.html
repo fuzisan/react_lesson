@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <script src="https://fb.me/react-15.3.0.js"></script>
+  <script src="https://fb.me/react-dom-15.3.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+  <div id="content"></div>
+
+  <script type="text/babel">
+  var ColoredButton = React.createClass({
+    render: function() {
+      var defAttrs = {
+        style: {
+          color: '#A04020',
+          backgroundColor: '#90C0A0',
+          fontFamily: 'Serif',
+          fontSize: 22
+        },
+        type: 'button',
+        disabled: false
+      }
+      return (
+        /*<button {...defAttrs} disabled = {true}>*/
+        <button {...defAttrs} {...this.props}>
+        {this.props.children}
+        </button>
+      )
+    }
+  });
+
+  ReactDOM.render(
+    <ColoredButton disabled = {true}>
+    Tap Me!
+    </ColoredButton>,
+    document.getElementById('content')
+  );
+  </script>
+</body>
+</html>

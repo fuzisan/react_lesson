@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Simple Table</title>
+  <script src="https://fb.me/react-15.3.0.js"></script>
+  <script src="https://fb.me/react-dom-15.3.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  <style>
+  table.regularTable,th,td{
+    border: 1px solid;
+  }
+  </style>
+</head>
+<body>
+
+
+  <div id="content"></div>
+
+  <script type="text/babel">
+  var tableColumns = ['名前', '地域', '番号'];
+
+  var tableData = [
+    {id:1, name:'aaa', area:'Tokyo', number:'123'},
+    {id:2, name:'bbb', area:'Kanagawa', number:'234'},
+    {id:3, name:'ccc', area:'Saitama', number:'345'}
+  ];
+
+  var TableHeader = React.createClass({
+    render: function() {
+      var tableTitles = this.props.title.map(function(cName, i) {
+        return (<th key={i}>
+          {cName}
+        </th>);
+      });
+      return (<thead>
+        <tr>
+          {tableTitles}
+        </tr>
+      </thead>);
+    }
+  });
+
+  var TableBody = React.createClass({
+    render: function() {
+      var tableRows = this.props.data.map(function(person) {
+        return (<tr key={person.id}>
+          <td>{person.name}</td>
+          <td>{person.area}</td>
+          <td>{person.number}</td>
+        </tr>);
+      });
+      return (<tbody>
+        {tableRows}
+      </tbody>);
+    }
+  });
+
+  var DispTable = React.createClass({
+    render: function() {
+      return (<table className="regularTable">
+        <TableHeader title={this.props.title}/>
+        <TableBody data={this.props.data}/>
+      </table>);
+    }
+  });
+
+  ReactDOM.render(
+    <DispTable title={tableColumns} data={tableData}/>,
+    document.getElementById('content')
+  );
+
+  </script>
+</body>
+</html>

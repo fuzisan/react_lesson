@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Simple Table</title>
+  <script src="https://fb.me/react-15.3.0.js"></script>
+  <script src="https://fb.me/react-dom-15.3.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  <style>
+  table.regularTable,th,td{
+    border: 1px solid;
+  }
+  </style>
+</head>
+<body>
+
+
+  <div id="content"></div>
+
+  <script type="text/babel">
+  var tableData = [
+    {id:1, name:'aaa', area:'Tokyo', number:'123'},
+    {id:2, name:'bbb', area:'Kanagawa', number:'234'},
+    {id:3, name:'ccc', area:'Saitama', number:'345'}
+  ];
+  var SimpleTable = React.createClass({
+    render: function(){
+      var tableBody = this.props.data.map(function(person){
+        return(
+          <tr key = {person.id}>
+            <td>{person.name}</td>
+            <td>{person.area}</td>
+            <td>{person.number}</td>
+          </tr>
+        );
+      });
+      return(
+        <table className="regularTable">
+          <thead>
+            <tr>
+              <th>名前</th>
+              <th>地域</th>
+              <th>番号</th>
+            </tr>
+          </thead>
+          <tbody>{tableBody}</tbody>
+        </table>
+      );
+    }
+  });
+  ReactDOM.render(
+    <SimpleTable data = {tableData}/>,
+    document.getElementById('content')
+  );
+
+  </script>
+</body>
+</html>

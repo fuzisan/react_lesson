@@ -7,8 +7,10 @@
     <script src="https://fb.me/react-dom-15.3.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
     <h1>計算機</h1>
+    <h2>生React</h2>
     <div id="content"></div>
-
+    <h2>JSX</h2>
+    <div id="content2"></div>
     <script type="text/babel">
     var Evaluator = React.createClass({
       getInitialState: function() {
@@ -37,6 +39,38 @@
     ReactDOM.render(
     	React.createElement(Evaluator),
       document.getElementById('content')
+    );
+
+    </script>
+    <script type="text/babel">
+    var Evaluator = React.createClass({
+      getInitialState: function() {
+        return {
+          expression: ''
+        };
+      },
+      reCalcValue: function(e) {
+        if (e.key === 'Enter')
+          this.setState({
+            expression: e.target.value
+          });
+      },
+      render: function() {
+        return (
+          <div>
+            <input
+            type ='text'
+            onKeyPress={this.reCalcValue}
+            />
+            <h2>{eval(this.state.expression)}</h2>
+          </div>
+        );
+      }
+    });
+
+    ReactDOM.render(
+      <Evaluator />,
+      document.getElementById('content2')
     );
 
     </script>
