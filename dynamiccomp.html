@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Simple Table</title>
+  <script src="https://fb.me/react-15.3.0.js"></script>
+  <script src="https://fb.me/react-dom-15.3.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  <style>
+  table.regularTable,th,td{
+    border: 1px solid;
+  }
+  </style>
+</head>
+<body>
+
+
+  <div id="content"></div>
+
+  <script type="text/babel">
+  var SimpleTable = React.createClass({
+    render: function(){
+      return(
+        <table className="regularTable">
+          <thead>
+            <tr>
+              <th>名前</th>
+              <th>地域</th>
+              <th>番号</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>山田太郎</td>
+              <td>東京都</td>
+              <td>12345</td>
+            </tr>
+            <tr>
+              <td>砂糖太郎</td>
+              <td>神奈川県</td>
+              <td>54321</td>
+            </tr>
+          </tbody>
+        </table>
+      );
+    }
+  });
+  ReactDOM.render(
+    <SimpleTable />,
+    document.getElementById('content')
+  );
+
+  </script>
+</body>
+</html>
