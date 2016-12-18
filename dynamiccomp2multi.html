@@ -25,9 +25,25 @@
     {id:2, name:'bbb', area:'Kanagawa', number:'234'},
     {id:3, name:'ccc', area:'Saitama', number:'345'}
   ];
+  
+  var startTime = Date.now();
+
+  var MonitorLifeCycleMixin = {
+    componentDidMount: function(){
+      console.log('componentDidMount:' , this.constructor.displayName);
+    },
+    componentWillMountReceiveProps: function(nextProps){
+      console.log('componentWillMountReceiveProps',nextProps);
+    },
+    showElapsed: function(){
+      console.log(this.constructor.displayName, Date.now() - startTime);
+    }
+  };
 
   var ContactTable = React.createClass({
+    mixins: [MonitorLifeCycleMixin],
     render: function(){
+      this.showElapsed();
       return(
         <table>{this.props.children}</table>
       );
@@ -35,12 +51,14 @@
   });
 
   ContactTable.Header = React.createClass({
+    mixins: [MonitorLifeCycleMixin],
     render: function() {
       var tableTitles = this.props.title.map(function(cName, i) {
         return (<th key={i}>
           {cName}
         </th>);
       });
+      this.showElapsed();
       return (<thead>
         <tr>
           {tableTitles}
@@ -50,6 +68,7 @@
   });
 
   ContactTable.Body = React.createClass({
+    mixins: [MonitorLifeCycleMixin],
     render: function() {
       var tableRows = this.props.data.map(function(person) {
         return (<tr key={person.id}>
@@ -58,6 +77,7 @@
           <td>{person.number}</td>
         </tr>);
       });
+      this.showElapsed();
       return (<tbody>
         {tableRows}
       </tbody>);
@@ -65,7 +85,9 @@
   });
 
   var DispTable = React.createClass({
+    mixins: [MonitorLifeCycleMixin],
     render: function() {
+      this.showElapsed();
       return (<ContactTable className="regularTable">
         <ContactTable.Header title={this.props.title}/>
         <ContactTable.Body data={this.props.data}/>

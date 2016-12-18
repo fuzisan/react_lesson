@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>react css animation</title>
+    <script src="https://fb.me/react-with-addons-15.3.0.js"></script>
+    <script src="https://fb.me/react-dom-15.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <style>
+      .fadingText-enter{
+        opacity: 0;
+      }
+      .fadingText-enter.fadingText-enter-active{
+        opacity: 1;
+        transition: 1500ms;
+      }
+      .fadingText-leave{
+        opacity: 1;
+      }
+      .fadingText-leave.fadingText-leave-active{
+        opacity: 0;
+        transition: 500ms;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="content"></div>
+
+    <script type="text/babel">
+    var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
+    var CheckAnimate = React.createClass({
+      getInitialState: function(){
+        return{checked:false,
+              visibleText: ''};
+      },
+      checkChange: function(event){
+        if (event.target.checked){
+          this.setState({visibleText:'見えない'})
+        }else{
+          this.setState({visibleText:''})
+        }
+        this.setState({checked: event.target.checked});
+      },
+      render: function() {
+        return (
+          <div>
+            <input
+            type = "checkbox"
+            checked={this.state.checked}
+            onChange={this.checkChange}
+            />隠れたテキストを表示
+            <ReactCSSTransitionGroup
+              transitionName="fadingText"
+              transitionEnterTimeout={1500}
+              transitionLeaveTimeout={500}>
+              <h2 key={this.state.checked}>{this.state.visibleText}</h2>
+              </ReactCSSTransitionGroup>
+          </div>
+        );
+      }
+    });
+
+    ReactDOM.render(
+      <CheckAnimate />,
+      document.getElementById('content')
+    );
+
+    </script>
+  </body>
+</html>
