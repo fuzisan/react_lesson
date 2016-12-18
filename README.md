@@ -36,6 +36,7 @@
 - 従来のやり方とは違う方法
 - SPAに向いている
 - VirtualDOMによりかなり高速
+- 保守性に優れている
 
 ##重要なこと
 - サーバサイド脳
@@ -79,7 +80,7 @@ react-native
 ###書き方
 
 ####命令的な書き方だった
-```js:
+```JavaScript:
 $('form').on('submit',function(){
     //要素を作って
     var $li = $('<li>');
@@ -91,7 +92,7 @@ $('form').on('submit',function(){
 ```
 
 ####宣言的な書き方になった
-```js:
+```JavaScript:
 var App = React.createClass({
   getInitialState: function(){
     return{members: []};
@@ -117,21 +118,18 @@ var App = React.createClass({
 React.render(<App />,document.getElementById('app-container'));
 ```
 
-
-
-
-
 ##State,JSX, Virtual DOM
 - State
 	- 変化する値（状態）を扱う気候
 	- 1方向データバインディング
 	- setState()で変えると，Viewの再描画が走る
+	- 前の状態が不要，DOMという大量変数を参照しないでいい
 
 - JSX
 	- XMLっぽい
 	- 宣言的
 - Virtual DOM
-ReactのバックエンドにあるDOM構造を抽象化したデータ構造
+	- ReactのバックエンドにあるDOM構造を抽象化したデータ構造
 データモデルの状態変化に合わせてVirtualDOMの前後のdiffを算出
 生DOM再描画を差分のあった箇所だけ行う
 
@@ -148,7 +146,9 @@ ReactのバックエンドにあるDOM構造を抽象化したデータ構造
 ```
 上記では，ReactDOM.render内のシンタックスエラーだと言われていたが，実際はrender:function()内のhtmlタグの閉じ忘れが原因だった
  
- 
+##Reactの後は?
+- fluxからのRedux
+- react-native
 
 
 ##dev tool
@@ -164,6 +164,9 @@ https://speakerdeck.com/naoya/reactgai-lun
 Reactがなぜ素晴らしいのか
 https://speakerdeck.com/masuidrive/reactganazesu-qing-rasiifalseka
 
+
+Reactがもたらした制約の意義
+https://speakerdeck.com/kjirou/reactgamotarasitazhi-yue-falseyi-yi
 
 Why React and not jQuery?
 https://speakerdeck.com/maechabin/why-react-and-not-jquery
