@@ -10,6 +10,7 @@
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
 
   <div id = "content"></div>
+  <div id = "content2"></div>
     <script type="text/babel">
     ReactDOM.render(
     React.DOM.h2({
@@ -21,6 +22,21 @@
     'hello,React World!'
     ),
     document.getElementById('content')
+    );
+    </script>
+
+    <script type="text/babel">
+    ReactDOM.render(
+    <h2
+    className = 'helloworld'
+    style={{
+    fontStyle: 'oblique',
+    fontFamily:'Arial',
+    color: 'green'
+    }}>
+    hello,React World!
+    </h2>,
+    document.getElementById('content2')
     );
     </script>
 </body>
